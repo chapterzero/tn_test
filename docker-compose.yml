@@ -8,4 +8,9 @@ services:
             - ./docker_data/mysql/:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: root
-
+    rabbit:
+        image: "rabbitmq:alpine"
+        ports:
+            - "56721:5672"
+        volumes:
+            - ./docker_data/rabbitmq/:/var/lib/rabbitmq
