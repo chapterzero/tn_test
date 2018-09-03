@@ -14,3 +14,8 @@ services:
             - "56721:5672"
         volumes:
             - ./docker_data/rabbitmq/:/var/lib/rabbitmq
+    mailserver:
+        image: "mailhog/mailhog:latest"
+        ports:
+            - "8025:8025"
+            - "1025:1025"
