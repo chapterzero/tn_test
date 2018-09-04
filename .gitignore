@@ -2,3 +2,4 @@ docker_data/mysql/*
 !docker_data/mysql/.gitkeep
 docker_data/rabbitmq/*
 !docker_data/rabbitmq/.gitkeep
+vendor/
