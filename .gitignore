@@ -3,3 +3,4 @@ docker_data/mysql/*
 docker_data/rabbitmq/*
 !docker_data/rabbitmq/.gitkeep
 vendor/
+coverage.out

@@ -1,0 +1,11 @@
+{
+    "Db": {
+        "Host": "127.0.0.1",
+        "Port": "33061",
+        "DbName": "tn_test",
+        "User": "root",
+        "Pass": "root"
+    },
+    "Smtp": {},
+    "Rabbit": {}
+}
