@@ -5,10 +5,9 @@ import (
 )
 
 func TestErrResponseErrFunc(t *testing.T) {
-	err := ErrResponse {
+	err := ErrResponse{
 		Code: 400,
-		Path: "/api/post/customer",
-		Msg: "Customer name is required",
+		Msg:  "Customer name is required",
 	}
 
 	expected := "Error when processing your request: Customer name is required"
