@@ -1,11 +1,14 @@
 package main
 
 import (
+	"github.com/chapterzero/tn_test/router"
 	"github.com/chapterzero/tn_test/server"
 	"log"
 	"net/http"
 	"path/filepath"
 )
+
+var appConfig server.AppConfig
 
 func init() {
 	configAbsPath, err := filepath.Abs("./app.config.json")
@@ -14,11 +17,12 @@ func init() {
 	}
 
 	// loading config file and initializing service class
-	appConfig := server.LoadConfigFromFile(configAbsPath)
-	log.Println(appConfig)
+	appConfig = server.LoadConfigFromFile(configAbsPath)
+	server.SetDbConfig(appConfig.Db)
+	log.Println("Db Config ", server.GetDbConfig())
 }
 
 func main() {
 	log.Println("Server will be running at port 8777")
-	http.ListenAndServe(":8777", server.CreateRouter())
+	http.ListenAndServe(":8777", router.CreateRouter())
 }

@@ -1,4 +1,4 @@
-package server
+package router
 
 import (
 	"github.com/chapterzero/tn_test/api/handlers"
