@@ -7,8 +7,8 @@ import (
 
 func CreateRouter() *mux.Router {
 	r := mux.NewRouter()
-	r.HandleFunc("/", handlers.PostCustomerHandler)
-	r.HandleFunc("/test", handlers.GetCustomerTypeHandler)
+	r.HandleFunc("/api/customer", handlers.PostCustomerHandler).Name("PostCustomer").Methods("POST")
+	r.HandleFunc("/api/customer_type", handlers.GetCustomerTypeHandler).Name("GetCustomerType").Methods("GET")
 
 	return r
 }
