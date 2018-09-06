@@ -22,4 +22,5 @@ func registerRoutes(r *mux.Router) {
 	// api routes
 	r.HandleFunc("/api/register", aHandler.PostRegisterHandler).Name("PostRegister").Methods("POST")
 	r.HandleFunc("/api/deposit", aHandler.PostDepositHandler).Name("PostDeposit").Methods("POST")
+	r.HandleFunc("/api/transaction", aHandler.GetTransactionHandler).Name("GetTransaction").Methods("GET")
 }
