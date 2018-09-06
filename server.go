@@ -19,7 +19,6 @@ func init() {
 	// loading config file and initializing service class
 	appConfig = server.LoadConfigFromFile(configAbsPath)
 	server.SetDbConfig(appConfig.Db)
-	log.Println("Db Config ", server.GetDbConfig())
 }
 
 func main() {

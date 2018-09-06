@@ -21,13 +21,13 @@ func TestCreateRouterPostCustomer(t *testing.T) {
 	assertPath(pathExp, "/api/customer", t)
 }
 
-func TestCreateRouterGetCustomerType(t *testing.T) {
-	getCustomerType := r.Get("GetCustomerType")
-	method, _ := getCustomerType.GetMethods()
-	pathExp, _ := getCustomerType.GetPathRegexp()
+func TestCreateRouterIndex(t *testing.T) {
+	route := r.Get("Index")
+	method, _ := route.GetMethods()
+	pathExp, _ := route.GetPathRegexp()
 
 	assertSingleMethod(method, "GET", t)
-	assertPath(pathExp, "/api/customer_type", t)
+	assertPath(pathExp, "/", t)
 }
 
 func assertSingleMethod(actual []string, expected string, t *testing.T) {
