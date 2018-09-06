@@ -27,6 +27,32 @@ func TestWriteJsonResponse(t *testing.T) {
 	}
 }
 
+func TestBadResponseError(t *testing.T) {
+	rr := httptest.NewRecorder()
+	someErrResponse := ErrResponse{
+		Code: 1,
+		Msg:  "Some Error Occured",
+	}
+
+	WriteBadResponseError(rr, someErrResponse)
+	actualBody := strings.TrimSpace(rr.Body.String())
+	actualHeader := rr.Header().Get("content-type")
+
+	expectedBody := "{\"code\":1,\"msg\":\"Some Error Occured\"}"
+
+	if actualBody != expectedBody {
+		t.Errorf("Expected body %v, got %v", expectedBody, actualBody)
+	}
+
+	if actualHeader != "application/json" {
+		t.Errorf("Expected header content type %v, got %v", "application/json", actualHeader)
+	}
+
+	if rr.Code != 400 {
+		t.Errorf("Expected status code %v, got %v", 400, rr.Code)
+	}
+}
+
 func TestInternalServerErrorResponse(t *testing.T) {
 	rr := httptest.NewRecorder()
 	someErrResponse := ErrResponse{
