@@ -24,12 +24,12 @@
 <form method="POST" id="register_form">
     <div>
         <label>First Name</label>
-        <input type="text" name="amount" id="amount"/>
+        <input type="text" name="first_name" id="first_name"/>
     </div>
     <br/>
     <div>
         <label>Last Name</label>
-        <input type="text" name="amount" id="amount"/>
+        <input type="text" name="last_name" id="last_name"/>
     </div>
     <br/>
     <div>
@@ -50,6 +50,9 @@
         $('#register_form').submit(function(e){
             e.preventDefault();
             var formData = {};
+            formData.firstName = $('#first_name').val()
+            formData.lastName = $('#last_name').val()
+            formData.amount = $('#amount').val()
             $('#status').text('').removeClass('error');
 
             $.ajax({
