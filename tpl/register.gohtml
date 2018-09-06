@@ -50,19 +50,19 @@
         $('#register_form').submit(function(e){
             e.preventDefault();
             var formData = {};
-            formData.firstName = $('#first_name').val()
-            formData.lastName = $('#last_name').val()
+            formData.first_name = $('#first_name').val()
+            formData.last_name = $('#last_name').val()
             formData.amount = $('#amount').val()
             $('#status').text('').removeClass('error');
 
             $.ajax({
-                url: '',
+                url: '/api/register',
                 dataType: 'json',
                 data: formData,
                 type: 'POST',
                 success: function(data) {
-                    $('#status').text("Successfully insert new customer, customer new account number: " + data.data)
-                    $('#deposit_form').trigger('reset')
+                    $('#status').text("Successfully insert new customer, customer new id: " + data.data.CustomerId + " account number: " + data.data.AccountNumber)
+                    $('#register_form').trigger('reset')
                 },
                 error: function(data) {
                     console.log(data)
