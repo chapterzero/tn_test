@@ -23,5 +23,9 @@ func init() {
 
 func main() {
 	log.Println("Server will be running at port 8777")
-	http.ListenAndServe(":8777", router.CreateRouter())
+	err := http.ListenAndServe(":8777", router.CreateRouter())
+
+	if err != nil {
+		panic(err)
+	}
 }
