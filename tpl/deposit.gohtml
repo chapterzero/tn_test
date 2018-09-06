@@ -17,6 +17,9 @@
 </head>
 
 <body>
+<div>
+    <a href="/">&laquo; Home</a>
+</div>
 <h1>Deposit to existing account</h1>
 <h5>please enter account number & amount</h5>
 <form method="POST" id="deposit_form">
@@ -53,7 +56,8 @@
                 data: formData,
                 type: 'POST',
                 success: function(data) {
-                    console.log(data)
+                    $('#status').text("Successfully insert new transaction, transaction id: " + data.data)
+                    $('#deposit_form').trigger('reset')
                 },
                 error: function(data) {
                     console.log(data)
