@@ -9,6 +9,10 @@
         display: inline-block;
         width: 170px;
     }
+
+    #status.error {
+        color: red;
+    }
 </style>
 </head>
 
@@ -27,6 +31,11 @@
     </div>
     <br/>
     <button type="submit">Submit</button>
+    <br/>
+    <br/>
+    <div>
+        <span id="status"></span>
+    </div>
 </form>
 
 <script type="text/javascript">
@@ -36,6 +45,7 @@
             var formData = {};
             formData.account_number = $('#account_number').val();
             formData.amount=$('#amount').val()
+            $('#status').text('').removeClass('error');
 
             $.ajax({
                 url: '/api/deposit',
@@ -47,7 +57,11 @@
                 },
                 error: function(data) {
                     console.log(data)
-                    alert("Error occured when submitting your data")
+                    if (data.status == 400) {
+                        $('#status').text(data.responseJSON.msg).addClass('error');
+                    } else {
+                        alert("Error occured when submitting your data")
+                    }
                 }
             });
         });

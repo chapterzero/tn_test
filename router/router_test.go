@@ -21,6 +21,15 @@ func TestCreateRouterPostCustomer(t *testing.T) {
 	assertPath(pathExp, "/api/customer", t)
 }
 
+func TestCreateRouterPostDeposit(t *testing.T) {
+	route := r.Get("PostDeposit")
+	method, _ := route.GetMethods()
+	pathExp, _ := route.GetPathRegexp()
+
+	assertSingleMethod(method, "POST", t)
+	assertPath(pathExp, "/api/deposit", t)
+}
+
 func TestCreateRouterIndex(t *testing.T) {
 	route := r.Get("Index")
 	method, _ := route.GetMethods()
