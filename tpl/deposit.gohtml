@@ -1,0 +1,58 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Deposit to existing customer</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<style type="text/css">
+    form label {
+        display: inline-block;
+        width: 170px;
+    }
+</style>
+</head>
+
+<body>
+<h1>Deposit to existing account</h1>
+<h5>please enter account number & amount</h5>
+<form method="POST" id="deposit_form">
+    <div>
+        <label>Account No</label>
+        <input type="text" name="account_number" id="account_number"/>
+    </div>
+    <br/>
+    <div>
+        <label>Amount</label>
+        <input type="text" name="amount" id="amount"/>
+    </div>
+    <br/>
+    <button type="submit">Submit</button>
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#deposit_form').submit(function(e){
+            e.preventDefault();
+            var formData = {};
+            formData.account_number = $('#account_number').val();
+            formData.amount=$('#amount').val()
+
+            $.ajax({
+                url: '/api/deposit',
+                dataType: 'json',
+                data: formData,
+                type: 'POST',
+                success: function(data) {
+                    console.log(data)
+                },
+                error: function(data) {
+                    console.log(data)
+                    alert("Error occured when submitting your data")
+                }
+            });
+        });
+    });
+</script>
+</body>
+
+</html>

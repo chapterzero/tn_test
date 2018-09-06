@@ -30,6 +30,15 @@ func TestCreateRouterIndex(t *testing.T) {
 	assertPath(pathExp, "/", t)
 }
 
+func TestCreateRouterDeposit(t *testing.T) {
+	route := r.Get("Deposit")
+	method, _ := route.GetMethods()
+	pathExp, _ := route.GetPathRegexp()
+
+	assertSingleMethod(method, "GET", t)
+	assertPath(pathExp, "/deposit", t)
+}
+
 func assertSingleMethod(actual []string, expected string, t *testing.T) {
 	if len(actual) != 1 || actual[0] != expected {
 		t.Errorf("Route should only accept %v, got %v", expected, actual)

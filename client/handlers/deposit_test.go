@@ -7,12 +7,12 @@ import (
 	"testing"
 )
 
-func TestIndexHandler(t *testing.T) {
+func TestDepositHandler(t *testing.T) {
 	os.Chdir("../..")
 
 	req, _ := http.NewRequest("GET", "/", nil)
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(IndexHandler)
+	handler := http.HandlerFunc(DepositHandler)
 	handler.ServeHTTP(rr, req)
 
 	if status := rr.Code; status != http.StatusOK {
