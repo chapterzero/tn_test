@@ -7,10 +7,17 @@ Notification job should go to queue server first not directly to the sender serv
 
 # Setup
 - Require mysql server, or use docker-compose environment using `docker-compose up -d`
+- Require dep, golang dependency manager, after you clone, sync the dependencies with `dep ensure -update`
 - Edit app.config.json with your database credential
 - Initialize your database with `sql/init.sql` file.
 - Run the server with `go run server.go`
 - Go to your browser, type `http://localhost:8777/`
+
+# 3rd party lib
+See `Gopkg.toml`
+- github.com/gorilla/mux
+- github.com/go-sql-driver/mysql
+- gopkg.in/DATA-DOG/go-sqlmock.v1
 
 # Test Coverage
 ```
