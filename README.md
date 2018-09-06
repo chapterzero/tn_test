@@ -11,3 +11,15 @@ Notification job should go to queue server first not directly to the sender serv
 - Initialize your database with `sql/init.sql` file.
 - Run the server with `go run server.go`
 - Go to your browser, type `http://localhost:8777/`
+
+# Test Coverage
+```
+go test -cover ./...
+?   	github.com/chapterzero/tn_test	[no test files]
+ok  	github.com/chapterzero/tn_test/api	(cached)	coverage: 100.0% of statements
+?   	github.com/chapterzero/tn_test/api/codes	[no test files]
+ok  	github.com/chapterzero/tn_test/api/handlers	(cached)	coverage: 92.2% of statements
+ok  	github.com/chapterzero/tn_test/client/handlers	(cached)	coverage: 100.0% of statements
+ok  	github.com/chapterzero/tn_test/router	(cached)	coverage: 100.0% of statements
+ok  	github.com/chapterzero/tn_test/server	(cached)	coverage: 68.8% of statements
+```
