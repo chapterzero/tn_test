@@ -49,7 +49,7 @@ func getTransactionAction(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	if err != nil {
 		errResponse := api.ErrResponse{
 			Code: codes.ErrDbQuery,
-			Msg:  "Error while executing account query: " + err.Error(),
+			Msg:  err.Error(),
 		}
 		api.WriteBadResponseError(w, errResponse)
 		return
@@ -59,7 +59,7 @@ func getTransactionAction(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	if err != nil {
 		errResponse := api.ErrResponse{
 			Code: codes.ErrDbQuery,
-			Msg:  "Error while executing transaction query: " + err.Error(),
+			Msg:  err.Error(),
 		}
 		api.WriteBadResponseError(w, errResponse)
 		return

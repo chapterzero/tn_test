@@ -13,6 +13,14 @@
     #status.error {
         color: red;
     }
+
+    table th {
+        text-align: left;
+        width: 300px;
+    }
+    table td.numeric, th.numeric {
+        text-align: right;
+    }
 </style>
 </head>
 
@@ -34,6 +42,23 @@
     <div>
         <span id="status"></span>
     </div>
+    <br/>
+    <br/>
+    <div>
+        <div>
+            <label>Account No</label>
+            <span id="res_account_number"></span>
+        </div>
+        <div>
+            <label>Balance</label>
+            <span id="res_balance"></span>
+        </div>
+        <div>
+            <label>Transactions</label>
+            <div id="res_transactions">
+            </div>
+        </div>
+    </div>
 </form>
 
 <script type="text/javascript">
@@ -45,13 +70,16 @@
             $('#status').text('').removeClass('error');
 
             $.ajax({
-                url: '/api/deposit',
+                url: '/api/transaction',
                 dataType: 'json',
                 data: formData,
-                type: 'POST',
+                type: 'GET',
                 success: function(data) {
-                    $('#status').text("Successfully insert new transaction, transaction id: " + data.data)
                     $('#deposit_form').trigger('reset')
+
+                    $('#res_account_number').text(data.data.AccountNumber)
+                    $('#res_balance').text(data.data.Balance.String)
+                    createTransactionTable(data.data.Transactions)
                 },
                 error: function(data) {
                     console.log(data)
@@ -63,6 +91,22 @@
                 }
             });
         });
+
+        function createTransactionTable(transactions) {
+            html = "<table>";
+            html += "<tr><th>Date</th><th style='width:50px'>ID</th><th>Description</th><th>DType</th><th class='numeric'>Amount</th></tr>";
+            for (var key in transactions) {
+                html += "<tr>";
+                html += "<td>" + transactions[key].Date + "</td>";
+                html += "<td>" + transactions[key].Id + "</td>";
+                html += "<td>" + transactions[key].Description + "</td>";
+                html += "<td>" + transactions[key].Dtype + "</td>";
+                html += "<td class='numeric'>" + transactions[key].Amount.String + "</td>";
+                html += "</tr>";
+            }
+
+            $('#res_transactions').html(html)
+        }
     });
 </script>
 </body>
