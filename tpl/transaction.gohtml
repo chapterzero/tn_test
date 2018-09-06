@@ -1,0 +1,70 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Transaction List</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<style type="text/css">
+    form label {
+        display: inline-block;
+        width: 170px;
+    }
+
+    #status.error {
+        color: red;
+    }
+</style>
+</head>
+
+<body>
+<div>
+    <a href="/">&laquo; Home</a>
+</div>
+<h1>See Transaction</h1>
+<h5>please enter account number</h5>
+<form method="GET" id="transaction_form">
+    <div>
+        <label>Account No</label>
+        <input type="text" name="account_number" id="account_number"/>
+    </div>
+    <br/>
+    <button type="submit">Submit</button>
+    <br/>
+    <br/>
+    <div>
+        <span id="status"></span>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#transaction_form').submit(function(e){
+            e.preventDefault();
+            var formData = {};
+            formData.account_number = $('#account_number').val();
+            $('#status').text('').removeClass('error');
+
+            $.ajax({
+                url: '/api/deposit',
+                dataType: 'json',
+                data: formData,
+                type: 'POST',
+                success: function(data) {
+                    $('#status').text("Successfully insert new transaction, transaction id: " + data.data)
+                    $('#deposit_form').trigger('reset')
+                },
+                error: function(data) {
+                    console.log(data)
+                    if (data.status == 400) {
+                        $('#status').text(data.responseJSON.msg).addClass('error');
+                    } else {
+                        alert("Error occured when submitting your data")
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+
+</html>
